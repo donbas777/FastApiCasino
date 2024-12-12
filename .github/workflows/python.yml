@@ -27,8 +27,18 @@ jobs:
           echo "CELERY_BACKEND=${{ secrets.CELERY_BACKEND }}" >> $GITHUB_ENV
           echo "CELERY_EMAIL=${{ secrets.CELERY_EMAIL }}" >> $GITHUB_ENV
           echo "CELERY_PASSWORD=${{ secrets.CELERY_PASSWORD }}" >> $GITHUB_ENV
-      
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
 
       - name: Build and start containers with Docker Compose
         run: |
-          docker-compose up --build
+          docker-compose up -d --build
+
+      - name: Verify service status
+        run: |
+          docker-compose ps
+
+      - name: Clean up
+        run: |
+          docker-compose down
