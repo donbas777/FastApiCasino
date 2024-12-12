@@ -12,6 +12,7 @@ class PlayRolletColorSchema(BaseModel):
     bet: float
     color: Colours
 
+
 class PlayRolletNumberSchema(BaseModel):
     bet: float
     number: int = Field(..., ge=0, le=36)
