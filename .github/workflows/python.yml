@@ -31,4 +31,4 @@ jobs:
 
       - name: Build and start containers with Docker Compose
         run: |
-          docker-compose -f docker-compose.yml up -d
+          docker-compose up --build
