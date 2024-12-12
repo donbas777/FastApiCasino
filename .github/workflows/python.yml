@@ -31,4 +31,4 @@ jobs:
 
       - name: Run your Python script or tests
         run: |
-          python your_script.py
+          python python main.py
