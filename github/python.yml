@@ -1,0 +1,34 @@
+name: Use Secrets Example
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set environment variables from secrets
+        run: |
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> $GITHUB_ENV
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> $GITHUB_ENV
+          echo "GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}" >> $GITHUB_ENV
+          echo "STRIPE_API_KEY=${{ secrets.STRIPE_API_KEY }}" >> $GITHUB_ENV
+          echo "ENDPOINT_SECRET=${{ secrets.ENDPOINT_SECRET }}" >> $GITHUB_ENV
+          echo "STRIPE_SUCCESS_URL=${{ secrets.STRIPE_SUCCESS_URL }}" >> $GITHUB_ENV
+          echo "STRIPE_CANCEL_URL=${{ secrets.STRIPE_CANCEL_URL }}" >> $GITHUB_ENV
+          echo "CELERY_BROKER=${{ secrets.CELERY_BROKER }}" >> $GITHUB_ENV
+          echo "CELERY_BACKEND=${{ secrets.CELERY_BACKEND }}" >> $GITHUB_ENV
+          echo "CELERY_EMAIL=${{ secrets.CELERY_EMAIL }}" >> $GITHUB_ENV
+          echo "CELERY_PASSWORD=${{ secrets.CELERY_PASSWORD }}" >> $GITHUB_ENV
+
+
+      - name: Run your Python script or tests
+        run: |
+          python your_script.py
