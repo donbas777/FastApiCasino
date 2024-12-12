@@ -27,11 +27,8 @@ jobs:
           echo "CELERY_BACKEND=${{ secrets.CELERY_BACKEND }}" >> $GITHUB_ENV
           echo "CELERY_EMAIL=${{ secrets.CELERY_EMAIL }}" >> $GITHUB_ENV
           echo "CELERY_PASSWORD=${{ secrets.CELERY_PASSWORD }}" >> $GITHUB_ENV
+      
 
-      - name: Install dependencies
+      - name: Build and start containers with Docker Compose
         run: |
-          pip install -r requirements.txt
-
-      - name: Run your Python script or tests
-        run: |
-          python main.py
+          docker-compose -f docker-compose.yml up -d
