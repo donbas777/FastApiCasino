@@ -28,6 +28,9 @@ jobs:
           echo "CELERY_EMAIL=${{ secrets.CELERY_EMAIL }}" >> $GITHUB_ENV
           echo "CELERY_PASSWORD=${{ secrets.CELERY_PASSWORD }}" >> $GITHUB_ENV
 
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
 
       - name: Run your Python script or tests
         run: |
